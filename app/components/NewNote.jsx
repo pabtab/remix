@@ -1,8 +1,14 @@
+import { Form, useNavigation } from "@remix-run/react";
 import styles from "./NewNote.css";
 
 const NewNote = () => {
+  const navigation = useNavigation();
+
+  const isSubmitting = navigation.state === "submitting";
+
   return (
-    <form method='post' id='note-form'>
+    //form to Form change the redirect 302 to 204 normal requests
+    <Form method='post' id='note-form'>
       <p>
         <label htmlFor='title'>Title</label>
         <input type='text' id='title' name='title' required />
@@ -12,9 +18,9 @@ const NewNote = () => {
         <textarea id='content' name='content' rows='5' required />
       </p>
       <div className='form-actions'>
-        <button>Add Note</button>
+        <button disabled={isSubmitting}>{isSubmitting ? "Adding..." : "Add Note"}</button>
       </div>
-    </form>
+    </Form>
   );
 };
 
