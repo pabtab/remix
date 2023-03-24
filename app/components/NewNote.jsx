@@ -1,14 +1,16 @@
-import { Form, useNavigation } from "@remix-run/react";
+import { Form, useActionData, useNavigation } from "@remix-run/react";
 import styles from "./NewNote.css";
 
 const NewNote = () => {
   const navigation = useNavigation();
+  const data = useActionData();
 
   const isSubmitting = navigation.state === "submitting";
 
   return (
     //form to Form change the redirect 302 to 204 normal requests
     <Form method='post' id='note-form'>
+      {data?.message && <p>{data.message}</p>}
       <p>
         <label htmlFor='title'>Title</label>
         <input type='text' id='title' name='title' required />
