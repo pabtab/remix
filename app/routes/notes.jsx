@@ -36,6 +36,14 @@ export const CatchBoundary = () => {
   );
 };
 
+export const ErrorBoundary = ({ error }) => {
+  return (
+    <main className='error'>
+      <p>Something happen</p>
+    </main>
+  );
+};
+
 //Runs in the BE
 export const action = async ({ request }) => {
   const formData = await request.formData();
@@ -54,4 +62,11 @@ export const action = async ({ request }) => {
 
 export const links = () => {
   return [...newNoteLinks(), ...noteListLinks()];
+};
+
+export const meta = () => {
+  return {
+    title: "All Notes",
+    description: "Manage your Notes",
+  };
 };
